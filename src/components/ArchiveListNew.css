@@ -1,0 +1,228 @@
+.archive-list-new {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.archive-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.archive-empty p:first-child {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.archive-empty small {
+  display: block;
+  margin-top: 8px;
+  color: #aaa;
+}
+
+.archive-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.archive-info {
+  flex: 1;
+}
+
+.archive-dates {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.archive-created {
+  font-size: 12px;
+  color: #888;
+}
+
+.archive-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.archive-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.archive-btn.view {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.archive-btn.view:hover {
+  background: #bae6fd;
+}
+
+.archive-btn.delete {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.archive-btn.delete:hover {
+  background: #fecaca;
+}
+
+/* Archive Viewer Modal */
+.archive-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.archive-viewer-modal {
+  width: 100%;
+  max-width: 900px;
+  height: 90vh;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.close-viewer {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.archive-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* Responsive */
+@media (max-width: 375px) {
+  .archive-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .archive-dates {
+    font-size: 14px;
+  }
+  
+  .archive-created {
+    font-size: 11px;
+  }
+  
+  .archive-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .archive-empty p:first-child {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .archive-card {
+    padding: 20px;
+  }
+  
+  .archive-dates {
+    font-size: 18px;
+  }
+  
+  .archive-btn {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Archive viewer responsive */
+@media (max-width: 600px) {
+  .archive-viewer-overlay {
+    padding: 0;
+  }
+  
+  .archive-viewer-modal {
+    border-radius: 0;
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100%;
+  }
+  
+  .close-viewer {
+    top: calc(12px + env(safe-area-inset-top, 0px));
+  }
+}
+
+
+/* ============ DARK MODE ============ */
+.app.dark .archive-empty {
+  color: #808090;
+}
+
+.app.dark .archive-empty small {
+  color: #606070;
+}
+
+.app.dark .archive-card {
+  background: #1e1e2f;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.app.dark .archive-dates {
+  color: #e0e0e0;
+}
+
+.app.dark .archive-created {
+  color: #808090;
+}
+
+.app.dark .archive-btn.view {
+  background: #1e3a5f;
+  color: #60a5fa;
+}
+
+.app.dark .archive-btn.view:hover {
+  background: #1e4a7f;
+}
+
+.app.dark .archive-btn.delete {
+  background: #3f1e1e;
+  color: #f87171;
+}
+
+.app.dark .archive-btn.delete:hover {
+  background: #4f2e2e;
+}

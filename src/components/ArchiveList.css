@@ -1,0 +1,96 @@
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.archive-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  border-right: 4px solid #f59e0b;
+}
+
+.archive-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+.archive-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.archive-info h3 {
+  font-size: 0.9rem;
+  color: #1f2937;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.archive-info p {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.archive-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.view-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Tajawal", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.view-btn:active {
+  transform: scale(0.95);
+}
+
+.download-archive-btn,
+.delete-archive-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.download-archive-btn {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.delete-archive-btn {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.download-archive-btn:active,
+.delete-archive-btn:active {
+  transform: scale(0.9);
+}

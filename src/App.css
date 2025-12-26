@@ -1,0 +1,707 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #fbcfe8 60%, #f9a8d4 100%);
+  min-height: 100vh;
+  min-height: 100dvh;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  padding-top: calc(20px + var(--safe-area-top));
+  padding-bottom: calc(100px + var(--safe-area-bottom));
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Header - Cute Notebook Style */
+.header {
+  text-align: center;
+  padding: 30px 20px;
+  background: white;
+  border-radius: 24px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.15);
+  position: relative;
+  border: 3px solid #fce7f3;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, #f9a8d4 0, #f9a8d4 8px, transparent 8px, transparent 16px);
+}
+
+.header-content {
+  color: #831843;
+}
+
+.header-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 10px;
+  color: #ec4899;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #be185d;
+}
+
+.week-range {
+  font-size: 0.95rem;
+  color: #9d174d;
+  opacity: 0.8;
+}
+
+/* Author Toggle - Pill Style */
+.author-toggle {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 50px;
+  padding: 5px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.author-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #9ca3af;
+  font-family: 'Tajawal', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.author-btn.active {
+  color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.author-btn:first-child.active {
+  background: linear-gradient(135deg, #a855f7, #8b5cf6);
+}
+
+.author-btn:last-child.active {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.main {
+  min-height: 300px;
+}
+
+/* FAB Buttons */
+.fab-container {
+  position: fixed;
+  bottom: calc(24px + var(--safe-area-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 50;
+}
+
+.fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+.fab-add {
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+}
+
+.fab-preview {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+}
+
+.fab svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 100;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modal {
+  background: white;
+  border-radius: 24px 24px 0 0;
+  padding: 24px;
+  padding-bottom: calc(24px + var(--safe-area-bottom));
+  width: 100%;
+  max-width: 100%;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #fce7f3;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #be185d;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.close-btn:active {
+  background: #fbcfe8;
+  transform: scale(0.95);
+}
+
+/* Loading state */
+.app.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.loader {
+  color: #be185d;
+  font-size: 1.2rem;
+}
+
+/* Prevent zoom on input focus */
+input,
+textarea,
+select {
+  font-size: 16px !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f9a8d4;
+  border-radius: 4px;
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .app {
+    min-height: -webkit-fill-available;
+  }
+  
+  body {
+    min-height: -webkit-fill-available;
+  }
+}
+
+
+/* Countdown Box */
+.countdown-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: white;
+  border-radius: 50px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  color: #6b7280;
+  font-size: 0.9rem;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.countdown-box.thursday {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  font-weight: 600;
+}
+
+.countdown-box svg {
+  flex-shrink: 0;
+}
+
+/* Save FAB */
+.fab-save {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.fab-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* User Indicator */
+.user-indicator {
+  text-align: center;
+  padding: 8px 16px;
+  background: white;
+  border-radius: 50px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+  font-weight: 600;
+  max-width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Logout Button */
+.logout-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #fce7f3;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #be185d;
+}
+
+.logout-btn:hover {
+  background: #fbcfe8;
+}
+
+/* Disabled tab button */
+.author-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* Three tabs layout */
+.author-toggle.three-tabs {
+  max-width: 360px;
+}
+
+.author-toggle.three-tabs .author-btn {
+  font-size: 0.85rem;
+  padding: 10px 12px;
+}
+
+.author-toggle.three-tabs .author-btn:nth-child(3).active {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+
+/* ============ RESPONSIVE DESIGN ============ */
+
+/* Small phones (iPhone SE, small Android) */
+@media (max-width: 375px) {
+  .app {
+    padding: 12px;
+    padding-top: calc(16px + var(--safe-area-top));
+    padding-bottom: calc(90px + var(--safe-area-bottom));
+  }
+  
+  .header {
+    padding: 20px 16px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .header-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .week-range {
+    font-size: 0.85rem;
+  }
+  
+  .user-indicator {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .countdown-box {
+    font-size: 0.8rem;
+    padding: 10px 16px;
+    max-width: 240px;
+  }
+  
+  .author-toggle {
+    max-width: 260px;
+  }
+  
+  .author-toggle.three-tabs {
+    max-width: 320px;
+  }
+  
+  .author-btn {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .author-toggle.three-tabs .author-btn {
+    font-size: 0.75rem;
+    padding: 8px 8px;
+  }
+  
+  .fab {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .fab svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .fab-container {
+    gap: 10px;
+  }
+}
+
+/* Medium phones (iPhone 12/13/14, most Android) */
+@media (min-width: 376px) and (max-width: 428px) {
+  .app {
+    padding: 14px;
+    padding-top: calc(18px + var(--safe-area-top));
+  }
+  
+  .header {
+    padding: 24px 18px;
+  }
+  
+  .header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Large phones (iPhone Pro Max, large Android) */
+@media (min-width: 429px) and (max-width: 768px) {
+  .app {
+    padding: 16px;
+  }
+  
+  .header {
+    padding: 28px 20px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  .app {
+    padding: 24px;
+    max-width: 700px;
+  }
+  
+  .header {
+    padding: 36px 28px;
+    border-radius: 28px;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .author-toggle {
+    max-width: 320px;
+  }
+  
+  .author-toggle.three-tabs {
+    max-width: 420px;
+  }
+  
+  .author-btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+  
+  .countdown-box {
+    max-width: 320px;
+    font-size: 1rem;
+    padding: 14px 24px;
+  }
+  
+  .fab {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .fab svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Short screens (landscape or small height) */
+@media (max-height: 600px) {
+  .header {
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .header h1 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+  }
+  
+  .header-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 6px;
+  }
+  
+  .user-indicator {
+    margin-bottom: 8px;
+  }
+  
+  .countdown-box {
+    margin-bottom: 10px;
+    padding: 8px 14px;
+  }
+  
+  .author-toggle {
+    margin-bottom: 12px;
+  }
+}
+
+/* Notch handling for newer iPhones */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .app {
+    padding-top: calc(20px + env(safe-area-inset-top));
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+    padding-left: calc(16px + env(safe-area-inset-left));
+    padding-right: calc(16px + env(safe-area-inset-right));
+  }
+  
+  .fab-container {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+  
+  .modal {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
+
+
+/* ============ DARK MODE ============ */
+
+/* Theme toggle button */
+.theme-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #fce7f3;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  color: #be185d;
+}
+
+.theme-btn:hover {
+  background: #fbcfe8;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.app.dark .header {
+  background: #1e1e2f;
+  border-color: #2d2d44;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.app.dark .header::before {
+  background: repeating-linear-gradient(90deg, #4a4a6a 0, #4a4a6a 8px, transparent 8px, transparent 16px);
+}
+
+.app.dark .header-content {
+  color: #e0e0e0;
+}
+
+.app.dark .header h1 {
+  color: #f0a0c0;
+}
+
+.app.dark .header-icon {
+  color: #f0a0c0;
+}
+
+.app.dark .week-range {
+  color: #b0b0c0;
+}
+
+.app.dark .logout-btn,
+.app.dark .theme-btn {
+  background: #2d2d44;
+  color: #f0a0c0;
+}
+
+.app.dark .logout-btn:hover,
+.app.dark .theme-btn:hover {
+  background: #3d3d54;
+}
+
+.app.dark .user-indicator {
+  background: #1e1e2f;
+  color: #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark .countdown-box {
+  background: #1e1e2f;
+  color: #b0b0c0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark .countdown-box.thursday {
+  background: linear-gradient(135deg, #3d3d1a, #4a4a2a);
+  color: #f0d080;
+}
+
+.app.dark .author-toggle {
+  background: #1e1e2f;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark .author-btn {
+  color: #808090;
+}
+
+.app.dark .author-btn.active {
+  color: white;
+}
+
+.app.dark .loader {
+  color: #f0a0c0;
+}
+
+/* Dark mode for modals */
+body.dark-mode .modal {
+  background: #1e1e2f;
+}
+
+body.dark-mode .modal h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .close-btn {
+  background: #2d2d44;
+  color: #f0a0c0;
+}
+
+body.dark-mode textarea,
+body.dark-mode input {
+  background: #2d2d44;
+  border-color: #3d3d54;
+  color: #e0e0e0;
+}
+
+body.dark-mode textarea::placeholder,
+body.dark-mode input::placeholder {
+  color: #808090;
+}

@@ -1,0 +1,255 @@
+.modal h2 {
+  text-align: center;
+  color: #be185d;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.type-selector {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.type-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+  border: 2px solid #f3f4f6;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.7rem;
+  color: #6b7280;
+  font-family: "Tajawal", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+}
+
+.type-btn:active {
+  transform: scale(0.95);
+}
+
+.type-btn.active {
+  border-color: var(--type-color);
+  background: color-mix(in srgb, var(--type-color) 10%, white);
+  color: var(--type-color);
+}
+
+.type-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.modal textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #f3f4f6;
+  border-radius: 14px;
+  font-size: 16px;
+  resize: none;
+  font-family: "Tajawal", sans-serif;
+  direction: rtl;
+  background: #fafafa;
+  min-height: 100px;
+}
+
+.modal textarea:focus {
+  outline: none;
+  border-color: #ec4899;
+  background: white;
+}
+
+/* Images Section */
+.images-section {
+  margin-top: 5px;
+}
+
+.images-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.add-image-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: #fdf2f8;
+  border: 1px solid #fce7f3;
+  border-radius: 18px;
+  cursor: pointer;
+  color: #ec4899;
+  font-size: 0.8rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.add-image-btn:active {
+  background: #fce7f3;
+  transform: scale(0.98);
+}
+
+.add-image-btn input {
+  display: none;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.image-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #fce7f3;
+}
+
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-image {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.9);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.remove-image:active {
+  transform: scale(0.9);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Tajawal", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+
+/* Compression loading state */
+.add-image-btn.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.add-image-btn .spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* ============ DARK MODE ============ */
+body.dark-mode .modal {
+  background: #1e1e2f;
+}
+
+body.dark-mode .modal h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .close-btn {
+  background: #2d2d44;
+  color: #f0a0c0;
+}
+
+body.dark-mode .type-btn {
+  background: #2d2d44;
+  color: #b0b0c0;
+}
+
+body.dark-mode .type-btn.active {
+  background: var(--type-color);
+  color: white;
+}
+
+body.dark-mode textarea {
+  background: #2d2d44;
+  border-color: #3d3d54;
+  color: #e0e0e0;
+}
+
+body.dark-mode textarea::placeholder {
+  color: #808090;
+}
+
+body.dark-mode .images-header span {
+  color: #b0b0c0;
+}
+
+body.dark-mode .add-image-btn {
+  background: #2d2d44;
+  color: #b0b0c0;
+}
+
+body.dark-mode .image-item {
+  background: #2d2d44;
+}
+
+body.dark-mode .remove-image {
+  background: #3f1e1e;
+  color: #f87171;
+}
+
+body.dark-mode .submit-btn {
+  background: linear-gradient(135deg, #6b2d5c 0%, #4a1942 100%);
+}
