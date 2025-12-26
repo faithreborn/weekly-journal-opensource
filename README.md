@@ -244,6 +244,17 @@ Contributions are welcome! Feel free to:
 
 ---
 
+## 💖 Support
+
+If you find this project useful, consider supporting its development:
+
+| Method | Address |
+|--------|---------|
+| **Binance ID** | `587991886` |
+| **USDT (BEP20/BSC)** | `0xd243484573e3bf6b2b0f21947a4b17b29d86e539` |
+
+---
+
 ## 📄 License
 
 MIT License - feel free to use this for your own couple's journal!
